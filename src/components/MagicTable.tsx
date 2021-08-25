@@ -1,39 +1,30 @@
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { DataGrid, GridColDef } from "@material-ui/data-grid";
 
-const createData = (name: string, calories: number) => {
-  return { name, calories };
-};
+const columns: GridColDef[] = [
+  { field: "date", headerName: "Date", width: 200 },
+  {
+    field: "weight",
+    headerName: "Weight",
+    width: 150,
+    editable: true,
+  },
+];
 
-const rows = [createData("25.08.2021", 115), createData("24.08.2021", 115.6)];
+const rows = [
+  { id: 1, date: "25.08.2021", weight: 114.6 },
+  { id: 2, date: "24.08.2021", weight: 115 },
+];
 
 export const MagicTable = () => {
   return (
-    <TableContainer component={Paper}>
-      <Table size="small" aria-label="magic table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align="right">Weight</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={90}
+        disableSelectionOnClick
+      />
+    </div>
   );
 };
 
