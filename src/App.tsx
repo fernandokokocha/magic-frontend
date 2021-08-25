@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MagicTable from "./components/MagicTable";
-import { Box, Container, CssBaseline } from "@material-ui/core";
+import { Box, CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,10 +44,10 @@ function App() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <Box mt={5}>
-        <Container>
+      <Box m={5}>
+        <Box display="flex">
           <MagicTable />
-        </Container>
+        </Box>
       </Box>
     </div>
   );
