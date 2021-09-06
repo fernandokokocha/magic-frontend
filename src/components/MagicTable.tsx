@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef } from "@material-ui/data-grid";
+import { DataGrid, GridColDef, GridRowData } from "@material-ui/data-grid";
 
 const columns: GridColDef[] = [
   { field: "date", headerName: "Date", width: 200 },
@@ -10,12 +10,7 @@ const columns: GridColDef[] = [
   },
 ];
 
-const rows = [
-  { id: 1, date: "25.08.2021", weight: 114.6 },
-  { id: 2, date: "24.08.2021", weight: 115 },
-];
-
-export const MagicTable = () => {
+export const MagicTable = ({ rows }: { rows: GridRowData[] }) => {
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
@@ -23,6 +18,7 @@ export const MagicTable = () => {
         columns={columns}
         pageSize={90}
         disableSelectionOnClick
+        rowHeight={30}
       />
     </div>
   );
