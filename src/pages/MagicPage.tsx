@@ -3,7 +3,7 @@ import { Box, Button, makeStyles } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import { useState } from "react";
 import { GridRowData } from "@material-ui/data-grid";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
@@ -21,12 +21,27 @@ const useStyles = makeStyles({
   },
 });
 
+const DATE_FORMAT = "DD.MM.YYYY";
+
 const initialRows = [
-  { id: 0, date: "25.08.2021", weight: 114.6 },
-  { id: 1, date: "24.08.2021", weight: 115 },
+  { id: 0, date: dayjs("25.08.2021", DATE_FORMAT), weight: 114.6 },
+  { id: 1, date: dayjs("24.08.2021", DATE_FORMAT), weight: 115 },
 ];
 
-const DATE_FORMAT = "DD.MM.YYYY";
+const getNextDate = (dates: Dayjs[]): Dayjs => {
+  const lastDate = (dayjs as any).max(dates);
+  return lastDate.add(1, "day");
+};
+
+const getNextId = (ids: number[]): number => {
+  const maxId = Math.max(...ids);
+  return maxId + 1;
+};
+
+const getRandomWeight = () => {
+  const rand = (Math.random() * 10).toFixed(1);
+  return 100 + Number(rand);
+};
 
 const MagicPage = () => {
   const classes = useStyles();
@@ -34,13 +49,15 @@ const MagicPage = () => {
   const [rows, setRows] = useState<GridRowData[]>(initialRows);
 
   const handleSubmit = () => {
-    const dates = rows.map((row) => dayjs(row.date, DATE_FORMAT));
-    const lastDate = (dayjs as any).max(dates);
-    const date = dayjs(lastDate, DATE_FORMAT).add(1, "day").format(DATE_FORMAT);
+    const dates = rows.map((row) => row.date);
+    const date = getNextDate(dates);
 
     const ids = rows.map((row) => row.id);
-    const maxId = Math.max(...ids);
-    setRows([{ id: maxId + 1, date, weight: 112.8 }, ...rows]);
+    const id = getNextId(ids);
+
+    const weight = getRandomWeight();
+
+    setRows([{ id, date, weight }, ...rows]);
   };
 
   return (
