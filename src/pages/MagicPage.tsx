@@ -4,6 +4,7 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import { useState } from "react";
 import { GridRowData } from "@material-ui/data-grid";
 import dayjs, { Dayjs } from "dayjs";
+import { DATE_FORMAT } from "../datetime/datetime";
 
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
@@ -21,11 +22,9 @@ const useStyles = makeStyles({
   },
 });
 
-const DATE_FORMAT = "DD.MM.YYYY";
-
 const initialRows = [
-  { id: 0, date: dayjs("25.08.2021", DATE_FORMAT), weight: 114.6 },
-  { id: 1, date: dayjs("24.08.2021", DATE_FORMAT), weight: 115 },
+  { id: 0, date: dayjs("2021.08.23", DATE_FORMAT), weight: 114.6 },
+  { id: 1, date: dayjs("2021.08.24", DATE_FORMAT), weight: 115 },
 ];
 
 const getNextDate = (dates: Dayjs[]): Dayjs => {

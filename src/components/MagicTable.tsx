@@ -1,7 +1,19 @@
 import { DataGrid, GridColDef, GridRowData } from "@material-ui/data-grid";
+import { DATE_FORMAT } from "../datetime/datetime";
+
+function getDate(params: any) {
+  const d = params.getValue(params.id, "date");
+  return d.format(DATE_FORMAT);
+}
 
 const columns: GridColDef[] = [
-  { field: "date", headerName: "Date", width: 200 },
+  {
+    field: "formattedDate",
+    headerName: "Date",
+    width: 200,
+    valueGetter: getDate,
+    sortComparator: (v1, v2) => (v1 as string).localeCompare(v2 as string),
+  },
   {
     field: "weight",
     headerName: "Weight",
