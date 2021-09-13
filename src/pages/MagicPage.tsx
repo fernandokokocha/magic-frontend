@@ -37,11 +37,6 @@ const getNextId = (ids: number[]): number => {
   return maxId + 1;
 };
 
-const getRandomWeight = () => {
-  const rand = (Math.random() * 10).toFixed(1);
-  return 100 + Number(rand);
-};
-
 const MagicPage = () => {
   const classes = useStyles();
 
@@ -54,7 +49,7 @@ const MagicPage = () => {
     const ids = rows.map((row) => row.id);
     const id = getNextId(ids);
 
-    const weight = getRandomWeight();
+    const weight = null;
 
     setRows([{ id, date, weight }, ...rows]);
   };
