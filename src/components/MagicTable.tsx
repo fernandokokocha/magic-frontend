@@ -1,5 +1,4 @@
 import { DataGrid, GridColDef, GridRowData } from "@material-ui/data-grid";
-import { useEffect, useRef } from "react";
 import { DATE_FORMAT } from "../datetime/datetime";
 
 function getDate(params: any) {

@@ -23,8 +23,16 @@ const useStyles = makeStyles({
 });
 
 const initialRows = [
-  { id: 0, date: dayjs("2021.08.23", DATE_FORMAT), weight: 114.6 },
-  { id: 1, date: dayjs("2021.08.24", DATE_FORMAT), weight: 115 },
+  {
+    id: dayjs("2021.08.23", DATE_FORMAT).unix(),
+    date: dayjs("2021.08.23", DATE_FORMAT),
+    weight: 114.6,
+  },
+  {
+    id: dayjs("2021.08.24", DATE_FORMAT).unix(),
+    date: dayjs("2021.08.24", DATE_FORMAT),
+    weight: 115,
+  },
 ];
 
 const getNextDate = (dates: Dayjs[]): Dayjs => {
@@ -32,9 +40,8 @@ const getNextDate = (dates: Dayjs[]): Dayjs => {
   return lastDate.add(1, "day");
 };
 
-const getNextId = (ids: number[]): number => {
-  const maxId = Math.max(...ids);
-  return maxId + 1;
+const getNextId = (date: Dayjs): number => {
+  return date.unix();
 };
 
 const MagicPage = () => {
@@ -46,8 +53,7 @@ const MagicPage = () => {
     const dates = rows.map((row) => row.date);
     const date = getNextDate(dates);
 
-    const ids = rows.map((row) => row.id);
-    const id = getNextId(ids);
+    const id = getNextId(date);
 
     const weight = null;
 
