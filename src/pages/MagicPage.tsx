@@ -61,6 +61,15 @@ const MagicPage = () => {
     setRows([{ id, date, weight }, ...rows]);
   };
 
+  const updateRow = (rowIndex: number, newValue: number) => {
+    const newRows = [...rows];
+
+    const row = newRows[rowIndex];
+    row.weight = newValue;
+
+    setRows(newRows);
+  };
+
   return (
     <Box m={5}>
       <Box mb={3}>
@@ -76,7 +85,7 @@ const MagicPage = () => {
         </Button>
       </Box>
       <Box>
-        <MagicTable rows={rows} />
+        <MagicTable rows={rows} updateRow={updateRow} />
         <MagicChart rows={rows} />
       </Box>
     </Box>
