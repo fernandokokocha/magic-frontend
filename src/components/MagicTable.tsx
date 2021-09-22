@@ -18,12 +18,14 @@ const rowToData = (row: GridRowData) => [formatDate(row.date), row.weight];
 export const MagicTable = ({ rows }: { rows: GridRowData[] }) => {
   const data = rows.map(rowToData);
   return (
-    <MUIDataTable
-      title={"Magic"}
-      data={data}
-      columns={columns}
-      options={options}
-    />
+    <>
+      <MUIDataTable
+        title={"Magic"}
+        data={data}
+        columns={columns}
+        options={options}
+      />
+    </>
   );
 };
 

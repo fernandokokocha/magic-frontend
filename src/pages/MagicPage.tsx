@@ -5,6 +5,7 @@ import { useState } from "react";
 import { GridRowData } from "@material-ui/data-grid";
 import dayjs, { Dayjs } from "dayjs";
 import { DATE_FORMAT } from "../datetime/datetime";
+import MagicChart from "../components/MagicChart";
 
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
@@ -74,8 +75,9 @@ const MagicPage = () => {
           Next day
         </Button>
       </Box>
-      <Box display="flex">
+      <Box>
         <MagicTable rows={rows} />
+        <MagicChart rows={rows} />
       </Box>
     </Box>
   );
