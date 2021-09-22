@@ -9,7 +9,9 @@ function formatDate(day: Dayjs) {
 
 const columns = ["Day", "Weight"];
 
-const options = {};
+const options = {
+  selectableRows: "none" as any,
+};
 
 const rowToData = (row: GridRowData) => [formatDate(row.date), row.weight];
 

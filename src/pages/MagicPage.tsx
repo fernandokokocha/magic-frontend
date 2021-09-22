@@ -71,7 +71,7 @@ const MagicPage = () => {
           onClick={handleSubmit}
           autoFocus
         >
-          New day
+          Next day
         </Button>
       </Box>
       <Box display="flex">
